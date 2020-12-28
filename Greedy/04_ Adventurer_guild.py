@@ -1,7 +1,7 @@
 """
 Date : 20년 12월 22일
 Description : Algorithm Study 실전문제풀이 1
-Title : Remain 1(Greedy) 
+Title : 모험가 길드(Greedy) 
 """
 
 """
