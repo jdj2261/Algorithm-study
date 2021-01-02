@@ -35,7 +35,7 @@ answers	return
 모든 사람이 2문제씩을 맞췄습니다.
 """
 
-import copy
+# import copy
 
 def solution(answers):
     
@@ -45,25 +45,74 @@ def solution(answers):
     second_student = [2,1,2,3,2,4,2,5]
     third_student = [3,3,1,1,2,2,4,4,5,5]
 
-    for _ in range(len(answers)):
-        for num in first_student:
-            first_student.append(num)
-            
+    len_answers = len(answers)
+
+    len_first_student = len(first_student)
+
+    share = len_answers // len_first_student
+    remainder = len_answers % len_first_student
+
+    if len_answers > len_first_student:
+        result_first = first_student * share
+        result_second = second_student * share
+        result_third = third_student * share
+        if remainder != 0:
+            for i in range(remainder):
+                result_first.append(first_student[i])
+                result_second.append(second_student[i])
+                result_third.append(third_student[i])
+    else:
+        result_first = []
+        result_second = []
+        result_third = []
+        for i in range(len_answers):
+            result_first.append(first_student[i])
+            result_second.append(second_student[i])
+            result_third.append(third_student[i])
+
+    first_result = []
+    second_result = []
+    third_result = []
+    for i in range(len_answers):
+        if result_first[i] == answers[i]:
+            first_result.append(result_first[i])
+        if result_second[i] == answers[i]:
+            second_result.append(result_second[i])
+        if result_third[i] == answers[i]:
+            third_result.append(result_third[i])
+
+    result = []
+    result.append(len(first_result))
+    result.append(len(second_result))
+    result.append(len(third_result))
+
+    for person, score in enumerate(result):
+        if score == max(result):
+            answer.append(person+1)
+
     return answer
 
+# 깔끔한 풀이
+def solution2(answers):
+    pattern1 = [1,2,3,4,5]
+    pattern2 = [2,1,2,3,2,4,2,5]
+    pattern3 = [3,3,1,1,2,2,4,4,5,5]
+    score = [0, 0, 0]
+    result = []
 
-answers = [1,2,3,4,5,1,2,3,4]
-first_student = [1,2,3,4,5]
+    for idx, answer in enumerate(answers):
+        if answer == pattern1[idx%len(pattern1)]:
+            score[0] += 1
+        if answer == pattern2[idx%len(pattern2)]:
+            score[1] += 1
+        if answer == pattern3[idx%len(pattern3)]:
+            score[2] += 1
 
-j = 0
-for i in range(len(answers)):
-    j += 1
-    if i > len(first_student):
-        j = 0
-    print(j)
-    
+    for idx, s in enumerate(score):
+        if s == max(score):
+            result.append(idx+1)
 
+    return result
 
-# print(first_student)
 
 
