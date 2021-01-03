@@ -37,6 +37,7 @@ answers	return
 
 # import copy
 
+
 def solution(answers):
     
     answer = []
@@ -114,5 +115,26 @@ def solution2(answers):
 
     return result
 
+# itertools 이용
+from itertools import cycle
 
+def solution3(answers):
+    pl_1 = [1,2,3,4,5]
+    pl_2 = [2,1,2,3,2,4,2,5]
+    pl_3 = [3,3,1,1,2,2,4,4,5,5]
+    scores=[0,0,0]
+    winner=[]
 
+    for i, j, k, ans in zip(cycle(pl_1), cycle(pl_2), cycle(pl_3), answers) :
+        if i==ans:  scores[0]+=1
+        if j==ans:  scores[1]+=1
+        if k==ans:  scores[2]+=1
+    
+    for index, score in enumerate(scores):
+        if score == max(scores):
+            winner.append(index+1)
+    winner.sort()
+
+    return winner
+
+print(solution3([1,2,3,4,5]))
