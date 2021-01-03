@@ -30,45 +30,27 @@ n	lost	reserve	return
 3번 학생이 2번 학생이나 4번 학생에게 체육복을 빌려주면 학생 4명이 체육수업을 들을 수 있습니다.
 """
 from itertools import combinations
-
-# n = 3
-# lost = [3]
-# reserve = [1]
-
-# answer = n - len(lost) # 3
-
-# test = lost + reserve
-# test = [ i for i in combinations(test,2) if i not in combinations(lost,2)]
-# # print(test)
-
-# count = 0
-# tmp = []
-# for a,b in test:
-#     if abs(a-b) <2:
-#         print(a,b)
-#         tmp.append(a)
-#         count += 1
-
-# tmp = set(tmp)
-# tmp = list(tmp)
-# # print(tmp)
-
-# if count > len(tmp):
-#     count = count - len(tmp)
-
-# # print(count)
-# if count > len(reserve):
-#     count = len(reserve)
-# # print(count)
-
-# answer = answer + count
-# print(answer)
-# # print(test)
-
 def solution(n, lost, reserve):
-    answer = n - len(lost)
-    sum_data = lost + reserve
-    sum_data = [ i for i in combinations(sum_data,2) if i not in combinations(lost,2)]
+    _reserve = [r for r in reserve if r not in lost]
+    _lost = [l for l in lost if l not in reserve]
+    for r in _reserve:
+        f = r - 1
+        b = r + 1
+        if f in _lost:
+            _lost.remove(f)
+        elif b in _lost:
+            _lost.remove(b)
+    return n - len(_lost)
+
+def solution2(n, lost, reserve):
+
+    new_lost = list(set(lost) - set(reserve))
+    new_reserve = list(set(reserve) - set(lost))
+    sum_data = new_lost + new_reserve
+    answer = n - len(new_lost)
+
+    sum_data = [ i for i in combinations(sum_data,2)]
+    # print(sum_data)
 
     count = 0
     tmp_count = 0
@@ -76,37 +58,35 @@ def solution(n, lost, reserve):
     tmp_b = []
     for a,b in sum_data:
         if abs(a-b) <2:
-            print(a,b)
+            # print(a,b)
             tmp_a.append(a)
             tmp_b.append(b)
             tmp_count += 1
-
 
     tmp_a = set(tmp_a)
     tmp_a = list(tmp_a)
 
     tmp_b = set(tmp_b)
     tmp_b = list(tmp_b)
-    print(tmp_a, tmp_b)
+    # print(tmp_a, tmp_b)
+
+    # if tmp_a == tmp_b:
+        # print("same")
 
     if len(tmp_a) > len(tmp_b):
         count = len(tmp_b)
     elif len(tmp_a) < len(tmp_b):
         count = len(tmp_a)
-    else:
-         count = tmp_count
-    # tmp = set(tmp)
-    # tmp = list(tmp)
-    
-    # print(tmp)
 
+    if count > len(new_reserve):
+        count = len(new_reserve)
+        
     # print(count)
-
-    if count > len(reserve):
-        count = len(reserve)
-
     answer = answer + count
     return answer
 
-print(solution(10, [1,3,4,5,7,10], [2,6,8]))
+# print(solution(10, [1,3,4,5,7,10], [2,6,8]))
+# print(solution(10, [1,2,3,4,5,7,8,10], [1,2,6,8,9]))
 print(solution(5, [2,4], [1,3,5]))
+# print(solution(5, [2,3,4], [3,4,5]))
+# print(solution(,[1,2],[2,3]))
