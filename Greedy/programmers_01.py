@@ -1,7 +1,7 @@
 """
 Date : 21년 1월 3일
 Description : 프로그래머스 문제
-Title : 체육복(Implementation) 
+Title : 체육복(Greedy) 
 address : https://programmers.co.kr/learn/courses/30/lessons/42862
 """
 

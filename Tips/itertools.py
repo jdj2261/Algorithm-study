@@ -9,6 +9,11 @@ print(list(permutations(range(1, 5), 3)))
 
 print(list(combinations('ABC', 2)))
 
+# 문자열로 합치기
+number = "1234"
+data_list = list(map(''.join, combinations(number,2)))
+print(data_list)
+
 # product(range(1,n1+1), range(1,n2+1), range(1,n3+1))
 
 or_not = [(0, 500), (0, 1500)]
