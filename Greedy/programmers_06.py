@@ -29,16 +29,25 @@ costs를 그림으로 표현하면 다음과 같으며, 이때 초록색 경로�
 """
 
 # 나중에 풀어보기... 이건 지금 못푸는 문제 ㅜ
+
 def solution(n, costs):
-    answer = 0
-    return answer
+    # kruskal algorithm
+    ans = 0
+    costs.sort(key = lambda x: x[2]) # cost 기준으로 오름차순 정렬
+    routes = set([costs[0][0]]) # 집합
+    print(costs)
+    while len(routes)!=n:
+        for i, cost in enumerate(costs):
+            if cost[0] in routes and cost[1] in routes:
+                continue
+            if cost[0] in routes or cost[1] in routes:
+                routes.update([cost[0], cost[1]])
+                ans += cost[2]
+                costs[i] = [-1, -1, -1]
 
-costs = [[0,1,1],[0,2,2],[1,2,5],[1,3,1],[2,3,8]]
+                print("cost[0]: {}, cost[1]: {}, routes:{} , cost : {}, i : {}".format(cost[0], cost[1], routes, cost, i))
+                break
 
-costs = sorted(costs, key=lambda x: x[0])
+    return ans
 
-for cost in costs:
-    if cost[0] or cost[1] in :
-        pass
-
-print(costs)
+print(solution(4, [[0,1,1],[0,2,2],[1,2,5],[1,3,1],[2,3,8]]))
