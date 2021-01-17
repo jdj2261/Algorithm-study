@@ -21,7 +21,7 @@ for _ in range(M):
     a, b = map(int, input().split())
     graph[a].append(b)
 
-print(graph)
+# print(graph)
 
 distance = [-1] * (N+1)
 distance[X] = 0
@@ -34,6 +34,7 @@ while q:
             distance[next_node] = distance[now] + 1
             q.append(next_node)
 
+print(distance)
 check = False 
 for i in range(1, N + 1):
     if distance[i] == K:
