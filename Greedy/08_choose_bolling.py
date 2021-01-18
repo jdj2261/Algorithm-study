@@ -33,6 +33,25 @@ for a, b in pick:
         count -= 1
 print(count)
 
+
+n, m = map(int, input().split())
+data = list(map(int, input().split()))
+
+array = [0] * 11
+for x in data:
+    # 각 무게에 해당하는 볼릴공의 개수 카운트
+    array[x] += 1
+
+result = 0
+# 1부터 m까지의 각 무게에 대하여 처리
+for i in range(1, m+1):
+    n -= array[i]
+    result += array[i] * n
+
+print(result)
+
+
+
 # import itertools
 # N, M = map(int, input("N, M 입력하세요:").split())
 # data = list(map(int, input("볼링공 무게 입력하세요: ").split()))
