@@ -34,6 +34,7 @@ print(w)
 
 
 # 답안지 풀이
+# 중간값에 해당하는 위치면 최소가 된다.
 n = int(input())
 data = list(map(int, input().split()))
 data.sort()
