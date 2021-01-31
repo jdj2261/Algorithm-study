@@ -14,7 +14,7 @@ array = [int(input()) for _ in range(N)]
 
 d = [10001] * (M+1)
 
-d[0] = 0
+d[0] = 0                                     
 for i in range(N):
     for j in range(array[i], M+1):
         if d[j - array[i]] != 10001:
