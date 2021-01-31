@@ -7,3 +7,10 @@ import sys
 input_data = sys.stdin.readline().rstrip()
 
 print(input_data)
+
+"""
+재귀함수 호출 횟수 제한
+"""
+
+import sys
+sys.setrecursionlimit(2000) # 2000
