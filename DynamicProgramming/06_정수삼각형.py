@@ -29,3 +29,4 @@ for i in range(1, n):
             up = dp[i - 1][j]
         
         dp[i][j] = dp[i][j] + max(up_left, up)
+print(max(dp[n-1]))

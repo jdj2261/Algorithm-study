@@ -26,7 +26,7 @@ for _ in range(n):
     p.append(y)
 # 리스트를 뒤에서부터 거꾸로 확인
 for i in range(n-1, -1, -1):
-    time = t[i] + 1
+    time = t[i] + i
     # 상담이 기간 안에 끝나는 경우    
     if time <= n:
         # 점화식에 맞게, 현재까지 최고 이익 계산
