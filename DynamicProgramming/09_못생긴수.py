@@ -4,7 +4,8 @@ Description : Algorithm Study
 Title : 못생긴 수(다이나믹 프로그래밍) 
 """
 """
-
+입력예시    출력예시    
+10          12
 """
 n = int(input())
 
