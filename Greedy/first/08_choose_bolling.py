@@ -39,7 +39,7 @@ data = list(map(int, input().split()))
 
 array = [0] * 11
 for x in data:
-    # 각 무게에 해당하는 볼릴공의 개수 카운트
+    # 각 무게에 해당하는 볼링공의 개수 카운트
     array[x] += 1
 
 result = 0
