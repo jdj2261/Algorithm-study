@@ -53,8 +53,10 @@ import heapq
 def solution(food_times, k):
     if sum(food_times) <= k:
         return -1
+    # 시간이 작은 음식부터 빼야 하므로 우선순위 큐 이용
     q = []
     for i in range(len(food_times)):
+        # (음식 시간, 음식 번호) 형태로 우선순위 큐에 삽입
         heapq.heappush(q, (food_times[i], i+1))
     
     sum_value = 0
