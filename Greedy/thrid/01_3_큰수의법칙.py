@@ -23,14 +23,15 @@ input_data = list(map(int, input().split()))
 
 input_data.sort()
 
-first = input_data[n-1]
-second = input_data[n-2]
+first = input_data[n-1] # 가장 큰 수
+second = input_data[n-2] # 두 번째로 큰 수
 
+# 가장 큰 수가 더해지는 횟수 (수열) 
 count = m // (k+1) * k
 count += m % (k+1)
 
 result = 0
-result += count * first
-result += (m - count) * second
+result += count * first # 가장 큰 수 더하기
+result += (m - count) * second # 두 번째로 큰 수 더하기
 
 print(result)
