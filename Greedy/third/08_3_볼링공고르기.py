@@ -30,8 +30,9 @@ for i in range(len(input_data)-1):
             count += 1
 
 print(count)
-
 print("걸린 시간 : ", (time.time() - start) * 100)
+
+# 다른 풀이
 from itertools import combinations
 start = time.time()
 pick = list(combinations(input_data ,2))
