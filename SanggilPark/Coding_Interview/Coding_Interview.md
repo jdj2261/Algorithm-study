@@ -247,5 +247,124 @@
 
 ### 4. 문자열 조작
 
+#### 4-1. 유효한 팰린드롬
 
+[문제 바로가기](https://leetcode.com/problems/valid-palindrome/)
+
+팰린드롬인지 확인하기, 대소문자 구분하지 않고 영문자와 숫자만을 대상으로
+
+- 내풀이 (Runtime : 44ms)
+
+~~~python
+data = input()
+input_data = []
+for char in data:
+    if char.isalnum():
+        input_data.append(char.lower())
+
+n = len(input_data)
+if n % 2 == 0:
+    m = n // 2 - 1
+else:
+    m = n // 2 
+    
+if input_data[:n//2] == input_data[-1:m:-1]:
+    print("true")
+else:
+    print("false")
+~~~
+
+- 풀이 1. 리스트로 변환 ( Runtime : 304 ms)
+
+~~~python
+def isPalindrome(self, s: str) -> bool:
+    strs = []
+    for char in s:
+        if char.isalnum():
+            strs.append(char.lower())
+    while len(strs) > 1:
+        if strs.pop(0) != strs.pop():
+            return False
+    return True
+~~~
+
+- 풀이 2. 데크 자료형을 이용한 최적화 (Runtime : 64 ms)
+
+~~~python
+import collections
+def isPalindrome(self, s: str) -> bool:
+    strs: Deque = collections.deque()
+
+    for char in s:
+        if char.isalnum():
+            strs.append(char.lower())
+    while len(strs) > 1:
+        if strs.popleft() != strs.pop():
+            return False
+    return True
+~~~
+
+- 풀이 3. 슬라이싱 사용 (Runtime : 36ms)
+
+~~~python
+import re
+def isPalindrome3(self, s: str) -> bool:
+    s = s.lower()
+
+    s = re.sub('[^a-z0-9]','',s)
+    return s == s[::-1]
+~~~
+
+#### 4-2. 문자열 뒤집기
+
+[문제 바로가기](https://leetcode.com/problems/reverse-string)
+
+- 풀이 1. 투 포인터를 이용한 스왑
+
+~~~python
+# 풀이 1. 투포인터를 이용한 스왑
+def reverseString(self, s: list[str]) -> None:
+    left, right = 0, len(s) -1
+    while left < right:
+        s[left], s[right] = s[right], s[left]
+        left += 1
+        right -= 1
+~~~
+
+- 풀이 2. 파이썬다운 방식
+
+~~~python
+# 풀이 2. 파이썬다운 방식
+def reverseString2(self, s: list[str]) -> None:
+    """
+    Do not return anything, modify s in-place instead.
+    """
+    # 1
+    s.reverse()
+    # 2
+    s[:] = s[::-1]
+~~~
+
+#### 4-3. 로그 파일 재정렬
+
+[문제 바로가기](https://leetcode.com/problems/reorder-data-in-log-files/)
+
+- 풀이 1. 람다와 + 연산자 이용
+
+  람다 표현식이 필요한 경우엔 사용해도 좋다
+
+  map, filter와 함께 섞어서 사용하기 시작하면 가독성이 떨어질수 있으니 주의하자
+
+~~~python
+def reorderLogFiles(logs: list[str]) -> list[str]:
+    letters, digits = [], []
+    for log in logs:
+        if log.split()[1].isdigit():
+            digits.append(log)
+        else:
+            letters.append(log)
+    # 2개의 키를 람다 표현식으로 정렬
+    letters.sort(key=lambda x: (x.split()[1:], x.split()[0]))
+    return letters + digits
+~~~
 
