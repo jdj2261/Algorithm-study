@@ -245,6 +245,8 @@
   - 각 도시를 방문하고 돌아오는 가장 짧은 경로를 찾는 외판원 문제를 브루트 포스로 풀이할 때가 이에 해당
   - 가장 느린 알고리즘
 
+---
+
 ### 4. 문자열 조작
 
 #### 4-1. 유효한 팰린드롬
@@ -306,6 +308,8 @@ def isPalindrome(self, s: str) -> bool:
 
 - 풀이 3. 슬라이싱 사용 (Runtime : 36ms)
 
+  re(정규식 표현) library 사용법을 익히면 좋을 것 같다.
+
 ~~~python
 import re
 def isPalindrome3(self, s: str) -> bool:
@@ -366,5 +370,25 @@ def reorderLogFiles(logs: list[str]) -> list[str]:
     # 2개의 키를 람다 표현식으로 정렬
     letters.sort(key=lambda x: (x.split()[1:], x.split()[0]))
     return letters + digits
+~~~
+
+#### 4-4. 가장 흔한 단어
+
+[문제 바로가기](https://leetcode.com/problems/most-common-word/)
+
+- 풀이 1. 리스트 컴프리헨션, Counter 객체 사용
+
+  >  단어가 아닌 모든 문자를 공백으로 치환
+  >   \w : 단어 문자
+  >   ^ : not 
+
+~~~python
+import re
+from collections import Counter
+def mostCommonWord(paragraph: str, banned: list[str]) -> str:
+  words = [word for word in re.sub(r'[^\w]',' ',paragraph).lower().split() if word not in banned]
+  counts = Counter(words)
+  # [('ball', 2)]
+  return counts.most_common(1)[0,0]
 ~~~
 
