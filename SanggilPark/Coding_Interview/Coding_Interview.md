@@ -389,7 +389,7 @@ def mostCommonWord(paragraph: str, banned: list[str]) -> str:
   words = [word for word in re.sub(r'[^\w]',' ',paragraph).lower().split() if word not in banned]
   counts = Counter(words)
   # [('ball', 2)]
-  return counts.most_common(1)[0,0]
+  return counts.most_common(1)[0][0]
 ~~~
 
 [re.md 파일](./re(정규식표현).md)
