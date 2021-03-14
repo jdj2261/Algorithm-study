@@ -1,5 +1,5 @@
 """
-Date : 21년 3월 1일
+Date : 21년 3월 15일
 Description : Algorithm Study 실전문제풀이 2
 Title : 곱하기 혹은 더하기(Greedy) 
 """
@@ -16,17 +16,17 @@ Title : 곱하기 혹은 더하기(Greedy)
 576         210
 """
 
-# 리스트를 처음부터 비교하려 하지말고 첫번째 인덱스부터 비교하려고 하는 생각을 가지자!!
+def multiply_or_sum(s: list) -> int:
+    result = s[0]
 
-input_data = list(map(int, input()))
+    for i in range(1, len(s)):
+        if s[i] <= 1 or result <=1:
+            result += s[i]
+        else:
+            result *= s[i]
+    return result
 
-result = input_data[0]
-
-for i in range(1, len(input_data)):
-
-    if input_data[i] <= 1 or result <= 1:
-        result += input_data[i]
-    else:
-        result *= input_data[i]
+s = list(map(int, input()))
+result = multiply_or_sum(s)
 
 print(result)
