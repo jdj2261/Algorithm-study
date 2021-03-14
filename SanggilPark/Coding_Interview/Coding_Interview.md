@@ -392,3 +392,77 @@ def mostCommonWord(paragraph: str, banned: list[str]) -> str:
   return counts.most_common(1)[0,0]
 ~~~
 
+[re.md 파일](./re(정규식표현).md)
+
+참고 사이트 : [re 관련 정리1](https://whatisthenext.tistory.com/116) [re 관련 정리2](https://yganalyst.github.io/data_handling/memo_6/)
+
+#### 4-5. 그룹 애너그램
+
+[문제 바로가기](https://leetcode.com/problems/group-anagrams/)
+
+- 풀이 1. 정렬하여 딕셔너리에 추가
+
+  애너그램을 판단하는 가장 간단한 방법은 정렬하여 비교하는 것이다.
+
+  존재하지 않는 키를 삽입할 경우 KeyError가 발생하므로, 항상 디폴트를 생성해주는 `defaultdict()`로 선언하며, 매번 키 존재 여부를 체크하지 않고 비교 구문을 생략해 간략하게 구성한다.
+
+~~~python
+from collections import defaultdict
+
+def groupAnagrams(strs: list[str]) -> list[list[str]]:
+    anagrams = defaultdict(list)
+
+    for word in strs:
+        # 정렬하여 딕셔너리에 추가
+        anagrams[''.join(sorted(word))].append(word)
+    return anagrams.values()
+~~~
+
+- 여러 가지 정렬 방법
+
+  - sorted() 함수
+
+    > a = [2, 5, 1, 9, 7]
+    >
+    > sorted(a)
+
+    output : [1, 2, 5, 7, 9]
+
+    > b = 'zbdaf'
+    >
+    > sorted(b)
+
+    output : ['a', 'b', 'd', 'f', 'z']
+
+    > b = 'zbdaf'
+    >
+    > "".join(sorted(b))
+
+    output : 'abdfz'
+
+    > c = ['ccc', 'aaaa', 'd', 'bb']
+    >
+    > sorted(c, key=len)
+
+    output : ['d', 'bb', 'ccc', 'aaaa']
+
+    > a = ['cde', 'cfc', 'abc']
+    >
+    > def fn(s):
+    >
+    > ​	return s[0], s[-1]
+    >
+    > print(sorted(a, key=fn))
+
+    output : ['abc', 'cfc', 'cde']
+
+    > sorted(a, key=lambda s: (s[0], s[-1]))
+
+    output : ['abc', 'cfc', 'cde']
+
+  - sort() 함수
+
+    >alist.sort() # sort()는 리스트 자체를 제자리 정렬
+    >
+    >alis = blist.sort() # 잘못된 구문, sort()함수는 None을 리턴한다.
+
