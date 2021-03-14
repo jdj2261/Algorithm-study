@@ -466,3 +466,45 @@ def groupAnagrams(strs: list[str]) -> list[list[str]]:
     >
     >alis = blist.sort() # 잘못된 구문, sort()함수는 None을 리턴한다.
 
+#### 4-6. 가장 긴 팰린드롬 부분 문자열
+
+[문제 바로가기](https://leetcode.com/problems/longest-palindromic-substring/)
+
+- 풀이 1. 중앙을 중심으로 확장하는 풀이 (포인터 개념)
+
+  다이나믹 프로그래밍의 전형적인 문제지만 직관적으로 이해가 어렵고, 실행 속도가 느리므로 **두 포인터가 중앙을 중심으로 확장**하는 형태로 풀이하고자 한다.
+
+~~~python
+def longestPalindrome(s: str) -> str:
+    # 팰린드롬 판별 및 투 포인터 확장
+    def expand(left: int, right: int) -> str:
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1  # 중심을 기준으로 (왼쪽으로 확장)
+            right += 1 # 중심을 기준으로 (오른쪽으로 확장)
+        return s[left + 1: right]
+    
+    if len(s) < 2 or s == s[::-1]:
+        return s
+    
+    result = ''
+    #슬라이딩 윈도우 우측으로 이동
+    for i in range(len(s) - 1):
+        result = max(result, 
+        expand(i, i), 	# 길이가 홀수
+        expand(i, i+1), # 길이가 짝수
+        key=len)				# 길이가 가장 긴 문자열 
+    return result
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
