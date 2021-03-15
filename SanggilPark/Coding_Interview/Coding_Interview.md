@@ -496,6 +496,85 @@ def longestPalindrome(s: str) -> str:
     return result
 ~~~
 
+### 5. 배열
+
+#### 5-1. 두 수의 합
+
+[문제 바로가기](https://leetcode.com/problems/two-sum/)
+
+- 풀이 1. 브루트 포스로 계산 (나의 풀이..)
+
+  최적화할 수 있는 여러 가지 방법이 숨어 있기 때문에, 코딩 인터뷰 시 높은 빈도로 출제되는 문제이다.
+
+  시간 복잡도는 O(n^2)이고 지나치게 느리다.
+
+~~~python
+def twoSum(self, nums: List[int], target: int) -> List(int):
+  for i in range(len(nums)):
+    for j in range(i + 1, len(nums)):
+      if nums[i] + nums[j] == target:
+        return[i, j]
+~~~
+
+- 풀이 2. in을 이용한 탐색
+
+  모든 조합을 비교하지 않고 타겟에서 첫 번째 값을 뺀 값 target - n이 존재하는지 탐색하는 문제로 변경해보자. 
+
+~~~python
+def twoSum(self, nums: List[int], target: int) -> List(int):
+  for i, n in enumerate(nums):
+    complement = target - n
+  	if complement in nums[i+1:]:
+      return nums.index(n), nums[i+1:].index(complement) + (i+1)
+~~~
+
+- 풀이 3. 첫 번째 수를 뺀 결과 키 조회
+
+  타겟에서 첫 번째 수를 빼면 두 번째 수를 바로 알아낼 수 있다. 두 번째 수를 키로 하고 기존의 인덱스는 값으로 바꿔서 딕셔너리로 저장해두면, 나중에 두번째 수를 키로 조회해서 정답을 즉시 찾아낼 수 있다.
+
+  딕셔너리는 해시 테이블로 구현되어 있으므로 시간 복잡도는 평균적으로 O(1)이며, 최악의 경우 O(n)이 된다.
+
+~~~python
+def twoSum(self, nums: List[int], target: int) -> List(int):
+  nums_map = {}
+  # 키와 값을 바꿔서 딕셔너리로 저장
+  for i, num in enumerate(nums):
+    nums_map[num] = i
+  for i, num in enumerate(nums):
+    if target - num in num_map and i != nums_map[target - num]:
+      return nums.index(num), nums_map[target - num]
+~~~
+
+- 풀이 4. 조회 구조 개선 (여러번 풀어서 감을 익혀야 할듯)
+
+~~~python
+def twoSum(self, nums: List[int], target: int) -> List(int):
+  nums_map = {}
+  # 하나의 for 문으로 통합
+  for i, num in enumerate(nums):
+    if target - num in nums_map:
+      return [nums_map[target - num], i]
+    nums_map[num] = i 
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
