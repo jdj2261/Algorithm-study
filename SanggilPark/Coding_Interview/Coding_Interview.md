@@ -557,6 +557,79 @@ def twoSum(self, nums: List[int], target: int) -> List(int):
     nums_map[num] = i 
 ~~~
 
+- 풀이 5. 투 포인터 이용
+
+이 문제에서는 적용이 불가능하다 
+
+만약 이 문제가 인덱스가 아니라 값을 찾는 문제라면, 얼마든지 정렬하고 투 포인터로 풀 수 있지만 인덱스를 찾아내는 문제에서 정렬을 하게 되면 원래의 인덱스를 찾을 수가 없기 때문이다.
+
+방법은 익혀두자!
+
+~~~python
+def twoSum(self, nums: list[int], target: int) -> list[int]:
+  left, right = 0, len(nums) - 1
+  while not left == right:
+    # 합이 타겟보다 크면 오른쪽 포인터를 왼쪽으로
+    if nums[left] + nums[right] < target:
+      left += 1
+    elif nums[left] + nums[right] < target:
+      right -= 1
+    else:
+      return left, right
+~~~
+
+#### 5-2. 빗물 트래핑
+
+난이도 상.. 이해할 때 까지 봐야할 듯
+
+[문제 바로가기](https://leetcode.com/problems/trapping-rain-water/)
+
+- 풀이 1. 투 포인터를 최대로 이동
+
+~~~python
+def trap(self, height: List[int]) -> int:
+  if not height:
+    return 0
+  volume = 0
+  left, right = 0, len(height) - 1
+  left_max, right_max = height[left], height[right]
+  
+  while left < right:
+    left_max, right_max = max(height[left], left_max), max(height[right], right_max)
+    if left_max <= right_max:
+      volume += left_max - height[left]
+      left += 1
+    else:
+      volume += right_max - height[right]
+      right -= 1
+  return volume
+~~~
+
+- 풀이 2. 스택 쌓기
+
+~~~python
+def trap2(height: list[int]) -> int:
+    stack = []
+    volume = 0
+
+    for i in range(len(height)):
+        while stack and height[i] > height[stack[-1]]:
+            # 스택에서 꺼낸다
+            top = stack.pop()
+            if not len(stack):
+                break
+            # 이전과의 차이만큼 물 높이 처리
+            distance = i - stack[-1] - 1
+            waters = min(height[i], height[stack[-1]]) - height[top]
+            volume += distance * waters
+        stack.append(i)
+    return volume
+~~~
+
+
+
+
+
 
 
 
