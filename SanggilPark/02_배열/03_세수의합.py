@@ -15,7 +15,7 @@ Output: [[-1,-1,2],[-1,0,1]]
 """
 
 class Solution:
-    def threeSum(self, nums: list[int]) -> list[list[int]]:
+    def threeSum(self, nums: list(int)) -> list(list(int)):
         result = []
         nums.sort()
         # [-4, -1, -1, 0, 1, 2]
@@ -34,7 +34,7 @@ class Solution:
         return result
 
 class Solution:
-    def threeSum2(self, nums: list[int]) -> list[list[int]]:
+    def threeSum2(self, nums: list(int)) -> list(list(int)):
         results = []
         nums.sort()
 
