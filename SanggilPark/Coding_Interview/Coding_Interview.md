@@ -626,6 +626,111 @@ def trap2(height: list[int]) -> int:
     return volume
 ~~~
 
+#### 5-3. 세수의 합
+
+[문제 바로가기](https://leetcode.com/problems/3sum/)
+
+- 풀이 1. 브루트 포스로 계산
+
+  앞 뒤로 같은 값이 있는 경우, sort() 함수를 사용해 정렬하자
+
+~~~python
+def threeSum(self, nums: List[int]) -> List(List[int]):
+  results = []
+  nums.sort()
+  
+  # 브루트 포스 n^3 반복
+  for i in range(len(nums) - 2):
+    # 중복된 값 건너뛰기
+    if i > 0 and nums[i] == nums[i-1]:
+      continue
+    for j in range(i+1, len(nums) - 1):
+      if j > i+1 and nums[j] == nums[j-1]:
+        continue
+      for k in range(j + i, len(nums)):
+        if k > j+1 and nums[k] == nums [k-1]:
+          continue
+        if nums[i] + nums[j] + nums[k] == 0:
+          results.append((nums[i], nums[j], nums[k]))
+  return results
+~~~
+
+O(n^3) 은 어림도 없다.. 최적화를 진행하자
+
+- 풀이 2. 투포인터로 합 계산
+
+~~~python
+def threeSum(self, nums: List[int]) -> List(List[int]):
+  results = []
+  nums.sort()
+  
+  for i in range(len(nums) - 2):
+    if i > 0 and nums[i] == nums[i-1]:
+      continue
+    left, right = i+1, len(nums)-1
+    while left < right:
+      sum = nums[i] + nums[left] + nums[right]
+      if sum < 0:
+        left += 1
+      elif sum > 0:
+        right -= 1
+      else:
+        results.append((nums[i], nums[left], nums[right]))
+        while left < right and nums[left] == nums[left + 1]:
+          left += 1
+        while left < right and nums[right] == nums[right - 1]:
+          right -= 1
+        left += 1
+        right -= 1
+  return results 
+~~~
+
+#### 5-4. 배열 파티션 1
+
+[문제 바로가기](https://leetcode.com/problems/array-partition-i/)
+
+n개의 페어를 이용한 min(a, b)의 합으로 만들 수 있는 가장 큰 수를 출력하라.
+
+- 풀이 1. 오름차순 풀이
+
+  min()을 합산했을 때 최대가 되려면 결국 min()이 되도록 커야한다.
+
+~~~python
+def arrayPairSum(self, nums: List[int]) -> int:
+  sum = 0
+  pair = []
+  nums.sort()
+  
+  for n in nums:
+    pair.append(n)
+    if len(pair) == 2:
+      sum += min(pair)
+      pair = []
+  return sum
+~~~
+
+- 풀이 2. 짝수 번째 값 계산
+
+~~~python
+def arrayPairSum(self, nums: List[int]) -> int:
+  sum = 0
+  nums.sort()
+  
+  for i, n in enumerate(nums):
+    if i % 2 == 0:
+      sum += n
+  return sum
+~~~
+
+- 풀이 3. 파이썬다운 방식
+
+~~~python
+def arrayPairSum(self, nums: List[int]) -> int:
+  return sum(sorted(nums)[::2])
+~~~
+
+
+
 
 
 

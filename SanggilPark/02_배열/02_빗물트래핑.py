@@ -12,7 +12,7 @@ Explanation: The above elevation map (black section) is represented by array [0,
 In this case, 6 units of rain water (blue section) are being trapped.
 """
 # 다시 풀기.. (이해가 안돼ㅠㅠㅠ)
-def trap(height: list[int]) -> int:
+def trap(height: list(int)) -> int:
     if not height:
         return 0
     volume = 0
@@ -31,7 +31,7 @@ def trap(height: list[int]) -> int:
             right -= 1
     return volume
 
-def trap2(height: list[int]) -> int:
+def trap2(height: list(int)) -> int:
     stack = []
     volume = 0
 
