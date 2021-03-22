@@ -20,7 +20,7 @@ So the maximum possible sum is 4.
 
 class Solution:
     # 오름차순 풀이
-    def arrayPairSum(self, nums: list[int]) -> int:
+    def arrayPairSum(self, nums: list(int)) -> int:
         sum = 0
         pair = []
         nums.sort()
@@ -32,7 +32,7 @@ class Solution:
         return sum
 
     # 짝수 번째 값 계산
-    def arrayPairSum2(self, nums: list[int]) -> int:
+    def arrayPairSum2(self, nums: list(int)) -> int:
         sum = 0
         nums.sort()
 
@@ -42,7 +42,7 @@ class Solution:
         return sum
     
     # 파이써닉
-    def arrayPairSum3(self, nums: list[int]) -> int:
+    def arrayPairSum3(self, nums: list(int)]) -> int:
         return sum(sorted(nums)[::2])
 
 if __name__ == "__main__":
