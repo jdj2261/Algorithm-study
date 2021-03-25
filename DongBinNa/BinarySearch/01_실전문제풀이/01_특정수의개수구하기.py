@@ -48,7 +48,7 @@ def last(array, target, start, end):
     elif array[mid] > target:
         return last(array, target, start, mid - 1)
     else:
-        return last(array, target, start, mid -1 )
+        return last(array, target, mid + 1, end)
 
 n, x = map(int, input().split())
 array = list(map(int, input().split()))

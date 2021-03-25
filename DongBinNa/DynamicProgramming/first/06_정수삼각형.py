@@ -1,5 +1,5 @@
 """
-Date : 20년 1월 31일
+Date : 21년 1월 31일
 Description : Algorithm Study
 Title : 정수삼각형(다이나믹 프로그래밍) 
 """

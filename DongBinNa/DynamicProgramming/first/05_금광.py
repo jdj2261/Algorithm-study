@@ -1,5 +1,5 @@
 """
-Date : 20년 1월 31일
+Date : 21년 1월 31일
 Description : Algorithm Study
 Title : 금광(다이나믹 프로그래밍) 
 """
