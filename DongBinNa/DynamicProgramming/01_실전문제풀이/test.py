@@ -1,25 +1,19 @@
-for test_case in range(int(input())):
-    n, m = map(int, input().split())
-    array = [map(int, input().split())]
+n = int(input())
+t = []
+p = []
+dp = [0] * (n+1)
+max_value = 0
 
-    dp = []
-    index = 0
-    for i in range(n):
-        dp.append(array[index:index+m])
-        index += m
-    for j in range(1, m):
-        for i in range(n):
-            if i == 0:
-                left_up = 0
-            else:
-                left_up = dp[i-1][j-1]
-            if i == n-1:
-                left_down = 0
-            else:
-                left_down = dp[i+1][j-1]
-            left = dp[i][j-1]
-            dp[i][j] = dp[i][j] + max(left_up, left, left_down)
-    result = 0
-    for i in range(n):
-        result = max(result, dp[i][m-1])
-    print(result)
+for _ in range(n):
+    x, y = map(int, input().split())
+    t.append(x)
+    p.append(y)
+
+for i in range(n-1, -1, -1):
+    time = t[i] + i
+    if time <= n:
+        dp[i] = max(p[i] + dp[time], max_value)
+        max_value = dp[i]
+    else:
+        dp[i] = max_value
+        
