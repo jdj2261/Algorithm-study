@@ -1,20 +1,19 @@
 """
-Date : 21년 2월 11일
+Date : 21년 3월 28일
 Description : Algorithm Study
 Title : 화성탐사(최단거리) 
 """
-
 import heapq
 import sys
 input = sys.stdin.readline
 INF = int(1e9)
 
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
 for tc in range(int(input())):
     n = int(input())
-
+    
     graph = []
     for i in range(n):
         graph.append(list(map(int, input().split())))
@@ -29,7 +28,6 @@ for tc in range(int(input())):
         dist, x, y = heapq.heappop(q)
         if distance[x][y] < dist:
             continue
-
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
@@ -37,9 +35,7 @@ for tc in range(int(input())):
             if nx < 0 or nx >= n or ny < 0 or ny >= n:
                 continue
             cost = dist + graph[nx][ny]
-
             if cost < distance[nx][ny]:
                 distance[nx][ny] = cost
                 heapq.heappush(q, (cost, nx, ny))
-
-    print(distance[n-1][n-1])
+    print(distance[n - 1][n - 1])
