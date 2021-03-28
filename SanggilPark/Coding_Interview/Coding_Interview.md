@@ -729,39 +729,69 @@ def arrayPairSum(self, nums: List[int]) -> int:
   return sum(sorted(nums)[::2])
 ~~~
 
+#### 5-5. 자신을 제외한 배열의 곱
 
+[문제 바로가기](https://leetcode.com/problems/product-of-array-except-self/)
 
+배열을 입력받아 output[i]가 자신을 제외한 나머지 모든 요소의 곱셈 결과가 되도록 출력하라.
 
+> Input: nums = [1,2,3,4]
+>
+> Output: [24,12,8,6]
 
+- 풀이 1. 왼쪽 곱셈 결과에 오른쪽 값을 차례대로 곱셈
 
+~~~python
+def productExcetpSelf(nums: List[int]) -> List(int):
+  out = []
+  p = 1
+  
+  for i in range(0, len(nums)):
+    out.append(p)
+    p = p * nums[i]
+  p = 1
+  for i in range(len(nums), -1, -1):
+    out[i] = out[i] * p
+    p = p * nums[i]
+  return out
+~~~
 
+#### 5-6. 주식을 사고팔기 가장 좋은 시점
 
+[문제 바로가기](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
+한 번의 거래로 낼 수 있는 최대 이익을 산출하라.
 
+> Input: prices = [7,1,5,3,6,4]
+>
+> Output: 5
 
+- 풀이 1. 브루트 포스로 계산
 
+  안타깝게도 이 풀이는 타임아웃으로 풀리지 않는다.
 
+~~~python
+def maxProfit(self, prices: List[int]) -> int:
+  max_price = 0
+  for i, price in enumerate(prices):
+    for j in range(i, len(prices)):
+      max_price = max(prices[j] - price, max_price)
+  return max_price
+~~~
 
+- 풀이 2. 지점과 현재 값과의 차이 계산
 
+~~~python
+def maxProfit(self, prices: List[int]) -> int:
+  profit = 0
+  min_price = sys.maxsize
+  
+  # 최솟값과 최댓값을 계속 갱신
+  for price in prices:
+    min_price = min(min_price, price)
+    profit = max(profit, price - min_price)
+  return profit
+~~~
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 6. 연결 리스트
 
