@@ -1,27 +1,33 @@
-n = int(input())
-m = int(input())
-INF = int(1e9)
+import sys
+input = sys.stdin.readline
+INF = sys.maxsize
+import heapq
 
-graph = [[INF]*(n+1) for _ in range(n+1)]
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
-for _ in range(m):
-    a, b, c = map(int, input().split())
-    graph[a][b] = c
+for tc in range(int(input())):
+    n = int(input())
+    graph = []
+    for _ in range(n):
+        graph.append(list(map(int, input().split())))
+    distance = [[INF]*n for _ in range(n)]
 
-for i in range(1, n+1):
-    for j in range(1, n+1):
-        if a == b:
-            graph[a][b] = 0
+    x, y = 0, 0
+    q = [(graph[x][y], x, y)]
+    distance[x][y] = graph[x][y]
+    while q:
+        dist, x, y = heapq.heappop(q)
+        if distance[x][y] < dist:
+            continue
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
 
-for k in range(1, n+1):
-    for i in range(1, n+1):
-        for j in range(1, n+1):
-            graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
-
-for i in range(1, n+1):
-    for j in range(1, n+1):
-        if graph[i][j] == INF:
-            print(0, end=" ")
-        else:
-            print(graph[a][b], end=" ")
-    print()
+            if nx < 0 or nx >= n or ny < 0 or ny >= n:
+                continue
+            cost = dist + graph[nx][ny]
+            if cost < distance[nx][ny]:
+                distance[nx][ny] = cost
+                heapq.heappush(q, (cost, nx, ny))
+    print(distance[n-1][n-1])
