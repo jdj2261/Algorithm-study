@@ -1,17 +1,17 @@
-datas = input()
-answer = len(datas)
-for step in range(1, len(datas) // 2 + 1):
-    compressed = ""
-    prev = datas[0:step]
+s = input()
+answer = len(s)
+for step in range(1, len(s) //2 + 1):
+    compare_data = s[0:step]
     count = 1
-    for j in range(step, len(datas), step):
-        if prev == datas[j: j + step]:
+    compressed = ""
+    for data in range(step, len(s), step):
+        if compare_data == s[data:data+step]:
             count += 1
         else:
-            compressed += str(count) + prev if count >= 2 else prev
-            prev = datas[j : j + step]
+            compressed += str(count) + compare_data if count >= 2 else compare_data
+            compare_data = s[data : data+step]
             count = 1
-    compressed += str(count) + prev if count >= 2 else prev
+    compressed += str(count) + compare_data if count >= 2 else compare_data
     answer = min(answer, len(compressed))
 
 print(answer)

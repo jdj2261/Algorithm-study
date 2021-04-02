@@ -30,3 +30,20 @@ s = list(map(int, input()))
 result = multiply_or_sum(s)
 
 print(result)
+
+"""
+04 / 02 이렇게 풀었는데..
+data = list(map(int, input()))
+print(data)
+compare_data = data[0]
+result = compare_data
+for i in range(1, len(data)):
+    if compare_data == 0 or compare_data == 1:
+        result = result + data[i]
+    else:
+        result = result * data[i]
+    compare_data = data[i]
+
+print(result)
+"""
+
