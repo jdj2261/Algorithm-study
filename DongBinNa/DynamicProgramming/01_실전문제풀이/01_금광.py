@@ -40,4 +40,4 @@ for tc in range(int(input())):
     for i in range(n):
         result = max(result, dp[i][m-1])
 
-print(result)
+    print(result)

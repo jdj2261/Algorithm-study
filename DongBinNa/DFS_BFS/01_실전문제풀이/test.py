@@ -1,5 +1,4 @@
 from collections import deque
-
 n, k = map(int, input().split())
 
 graph = []
@@ -13,23 +12,21 @@ data.sort()
 
 q = deque(data)
 
-target_time, target_x, tagret_y = map(int, input().split())
+target_s, target_x, target_y = map(int, input().split())
 
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
-
 while q:
-    virus, time, x, y = q.popleft()
-    if time == target_time:
+    virus, cur_s, cur_x, cur_y = q.popleft()
+    if cur_s == target_s:
         break
     for i in range(4):
-        nx = x + dx[i]
-        ny = y + dy[i]
-
-        if 0 <= nx and nx < n and 0 <= ny and ny < n:
+        nx = cur_x + dx[i]
+        ny = cur_y + dy[i]
+        if nx >= 0 and nx < n and ny >= 0 and ny < n:
             if graph[nx][ny] == 0:
                 graph[nx][ny] = virus
-                q.append((graph[nx][ny], time + 1, nx, ny))
+                q.append((virus, cur_s + 1, nx, ny))
 
-print(graph[target_x - 1][tagret_y - 1])
+print(graph[target_x-1][target_y-1])
 

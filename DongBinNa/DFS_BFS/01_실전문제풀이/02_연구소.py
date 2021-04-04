@@ -12,7 +12,7 @@ Title : 연구소 (DFS)
 0 0 0 0 0 2
 """
 
-n, m = map(int, input())
+n, m = map(int, input().split())
 graph = []
 tmp = [[0] * (m) for _ in range(n)]
 result = 0
