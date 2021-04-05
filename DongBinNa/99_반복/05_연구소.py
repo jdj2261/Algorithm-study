@@ -1,6 +1,6 @@
 """
 Date : 21. 04. 04
-Title : 특정 거리의 도시 찾기
+Title : 연구소
 """
 n, m = map(int, input().split())
 graph = []
