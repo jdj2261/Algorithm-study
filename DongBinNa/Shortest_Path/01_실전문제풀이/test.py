@@ -5,21 +5,21 @@ INF = sys.maxsize
 
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
+
 for tc in range(int(input())):
     n = int(input())
     graph = []
+    distance = [[INF] * n for _ in range(n)]
     for _ in range(n):
         graph.append(list(map(int, input().split())))
-    
-    distance = [[INF]*(n) for _ in range(n)]
 
     x, y = 0, 0
     q = [(graph[x][y], x, y)]
-    distance[x][y] = 0
+    distance[x][y] = graph[x][y]
 
     while q:
-        dist, x, y = heapq.heappop(q)
-        if distance[x][y] < dist:
+        dist, cur_x, cur_y = heapq.heappop(q)
+        if distance[cur_x][cur_y] < dist:
             continue
         for i in range(4):
             nx = x + dx[i]

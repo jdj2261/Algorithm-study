@@ -18,7 +18,7 @@ import sys
 input = sys.stdin.readline
 INF = int(1e9)
 
-n, m = map(int, input())
+n, m = map(int, input().split())
 graph = [[INF] * (n+1) for _ in range(n+1)]
 
 for _ in range(1, n+1):
@@ -39,9 +39,9 @@ result = 0
 for i in range(1, n+1):
     count = 0
     for j in range(1, n+1):
-        if graph[i][j] != INF and graph[j][i] != INF:
+        if graph[i][j] != INF or graph[j][i] != INF:
             count += 1
-        if count == n:
-            result += 1
+    if count == n:
+        result += 1
 
 print(result)
