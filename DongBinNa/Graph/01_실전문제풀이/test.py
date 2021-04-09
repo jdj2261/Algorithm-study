@@ -1,14 +1,16 @@
 import sys
 input = sys.stdin.readline
+INF = sys.maxsize
 
-def find_parent(parent: list, x: int) -> int:
+def find_parent(parent, x):
     if parent[x] != x:
         parent[x] = find_parent(parent, parent[x])
     return parent[x]
 
-def union_parent(parent: list, a: int, b: int) -> None:
+def union_parent(parent, a, b):
     a = find_parent(parent, a)
     b = find_parent(parent, b)
+
     if a < b:
         parent[b] = a
     else:
@@ -17,22 +19,22 @@ def union_parent(parent: list, a: int, b: int) -> None:
 n, m = map(int, input().split())
 parent = [0] * (n+1)
 
+edges = []
+result = 0
+total = 0
+
 for i in range(1, n+1):
     parent[i] = i
+   
+for _ in range(m):
+    x, y ,z = map(int, input().split())
+    edges.append((z, x, y))
+edges.sort()
+for edge in edges:
+    cost, a, b = edge
+    total += cost
+    if find_parent(parent, a) != find_parent(parent, b):
+        union_parent(parent, a, b)
+        result += cost
 
-for i in range(n):
-    data = list(map(int, input().split()))
-    for j in range(n):
-        if data[j] == 1:
-            union_parent(parent, i+1, j+1)
-
-plan = list(map(int, input().split()))
-result = True
-for i in range(m-1):
-    if find_parent(parent, plan[i]) != find_parent(parent, plan[i+1]):
-        result = False
-
-if result:
-    print("YES")
-else:
-    print("NO")
+print(total-result)
