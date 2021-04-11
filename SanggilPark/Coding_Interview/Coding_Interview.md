@@ -793,5 +793,149 @@ def maxProfit(self, prices: List[int]) -> int:
   return profit
 ~~~
 
-### 6. 연결 리스트
+## 2. 알고리즘
+
+### 1. 다이나믹 프로그래밍
+
+- 다이나믹 프로그래밍 방법론
+
+  1) 상향식 (Bottom-Up)
+
+  - 더 작은 하위 문제부터 살펴본 다음, 작은 문제의 정답을 이용해 큰 문제의 정답을 풀어나간다.
+
+    **타뷸레이션(Tabulation)**이라 부르며, 일반적으로 이 방식만을 다이나믹 프로그래밍으로 지칭하기도 한다.
+
+  2) 하향식 (Top-Down)
+
+  - 하위 문제에 대한 정답을 계산했는지 확인해가며 문제를 자연스러운 방식으로 풀어나간다. 
+
+    **메모이제이션(Memoization)**이라 지칭한다.
+
+- 피보나치 수열 예제 코드
+
+  1) 상향식
+
+  ~~~python
+  def fib(n):
+    dp[0] = 0
+    dp[1] = 1
+    
+    for i in range(2, n + 1):
+      dp[i] = dp[i-1] + dp[i-2]
+    return dp[n]
+  ~~~
+
+  2) 하향식
+
+  ~~~python
+  def fib(n):
+    if n <= 1:
+      return n
+    if dp[n]:
+      return dp[n]
+    dp[n] = fib(n-1) + fib(n-2)
+    return dp[n]
+  ~~~
+
+#### 1-1. 피보나치
+
+[문제 바로가기](https://leetcode.com/problems/fibonacci-number/)
+
+피보나치 수를 구하라
+
+- 메모이제이션 이용
+
+~~~python
+from collections import defaultdict
+class Solution
+  dp = defaultdict(int)
+  def fib(self, n: int) -> int:
+    if n <= 1:
+      return n
+    if self.dp[n]:
+      return self.dp[n]
+    self.dp[n] = self.fib(n-1) + self.fib(n-2)
+    return self.dp[n]
+~~~
+
+- 타볼레이션 이용
+
+~~~python
+from collections import defaultdict
+class Solution
+  dp = defaultdict(int)
+  
+	def fib(self, n: int) -> int:
+    self.dp[1] = 1
+    for i in range(2, n+1):
+      self.dp[n] = self.dp[n-1] + self.dp[n-2]
+    return self.dp[n]
+~~~
+
+#### 1-2. 최대 서브 배열
+
+[문제 바로가기](https://leetcode.com/problems/maximum-subarray/)
+
+- 메모이제이션 이용
+
+~~~python
+def maxSubArray(self, nums: List[int]) -> int:
+  for i in range(1, len(nums)):
+    nums[i] += nums[i-1] if nums[i-1] > 0 else 0
+  return max(nums)
+~~~
+
+- 카데인 알고리즘 이용
+
+~~~python
+def maxSubArray(self, nums: List[int]) -> int:
+  best_sum = -sys.maxsize
+  current_sum = 0
+  for num in nums:
+    current_sum = max(num, current_sum + num)
+    best_sum = max(current_sum, best_sum)
+  return best_sum
+~~~
+
+#### 1-3. 계단 오르기
+
+[문제 바로가기](https://leetcode.com/problems/climbing-stairs/)
+
+매번 각각 1계단, 2계단씩 오를 수 있다면 정상에 도달하기 위한 방법은 몇 가지 경로가 되는지 계산하라.
+
+- 메모이제이션 이용
+
+~~~python
+from collections import defaultdict
+dp = defaultdict(int)
+def climbStairs(self, n: int) -> int:
+  if n <= 2:
+    return n
+  if dp[n]:
+    return dp[n]
+  dp[n] = climbStairs(n-1) + climbStaris(n-2)
+  return dp[n]
+~~~
+
+#### 1-4. 집 도둑
+
+[문제 바로가기](https://leetcode.com/problems/house-robber/)
+
+한 칸 이상 떨어진 집만 털 수 있다.
+
+훔칠 수 있는 가장 큰 금액을 출력하라.
+
+~~~python
+from collections import OrderDict
+def rob(self, nums: List[int]) -> int:
+  if not nums:
+    return 0
+  if len(nums) <= 2:
+    return max(nums)
+  dp = OrderDict()
+  dp[0], dp[1] = nums[0], max(nums[0], nums[1])
+  for i in range(2, len(nums)):
+    dp[i] = max(dp[i-1], dp[i-2] + nums[i])
+  return dp.popitem()[1]
+~~~
 
