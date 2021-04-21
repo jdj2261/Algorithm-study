@@ -1,5 +1,5 @@
 """
-Date : 21년 4월 20일
+Date : 21년 4월 21일
 Description : Baekjoon 
 Title : 카드구매하기
 """
