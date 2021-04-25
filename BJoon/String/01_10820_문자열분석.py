@@ -25,4 +25,22 @@ SPACE    1    SPACE
 """
 
 import sys
-input =
+input = sys.stdin.readline
+
+while True:
+    s = list(input())
+    if not s:
+        break
+    lower_cnt, upper_cnt, num_cnt, empty_cnt = 0, 0, 0, 0
+    for data in s:
+        if data.isalpha():
+            if data.islower():
+                lower_cnt += 1
+            else:
+                upper_cnt += 1
+        elif data.isnumeric():
+            num_cnt += 1
+        elif data.isspace():
+            empty_cnt += 1
+    
+    print(f'{lower_cnt} {upper_cnt} {num_cnt} {empty_cnt}')
