@@ -16,7 +16,7 @@ top: 스택의 가장 위에 있는 정수를 출력한다. 만약 스택에 들
 출력
 출력해야하는 명령이 주어질 때마다, 한 줄에 하나씩 출력한다.
 """
-
+# 바로 맞춤
 import sys
 input = sys.stdin.readline
 n = int(input())

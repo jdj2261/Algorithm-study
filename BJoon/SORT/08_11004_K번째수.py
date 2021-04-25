@@ -17,6 +17,7 @@ A를 정렬했을 때, 앞에서부터 K번째 있는 수를 출력한다.
 예제 출력 1 
 2
 """
+# 바로 맞춤
 import sys
 input = sys.stdin.readline
 
