@@ -23,7 +23,7 @@ SPACE    1    SPACE
 5 6 0 16
 0 8 9 0
 """
-
+# 바로 맞춤
 import sys
 input = sys.stdin.readline
 
