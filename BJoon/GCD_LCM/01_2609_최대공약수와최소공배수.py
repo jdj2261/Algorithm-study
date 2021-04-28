@@ -1,3 +1,6 @@
+"""
+Date : 21. 04. 27
+"""
 
 # 최대 공약수
 a, b = map(int, input().split())
