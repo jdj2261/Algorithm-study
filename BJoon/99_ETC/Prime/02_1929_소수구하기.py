@@ -20,6 +20,7 @@ M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오
 """
 
 # 에라토스테네스의 체
+# 다시 풀기
 import sys
 input = sys.stdin.readline
 
