@@ -33,3 +33,75 @@ Date : 21. 05. 01
 20 = 3 + 17
 42 = 5 + 37
 """
+import sys
+input = sys.stdin.readline
+
+def find_prime(n: int) -> list:
+    prime = [True] * (n+1)
+    result = []
+    for i in range(2, int(n**0.5) + 1):
+        if prime[i] == True:
+            for j in range(2*i, n+1, i):
+                prime[j] = False
+    for i in range(3, n+1):
+        if prime[i] == True:
+            result.append(i)
+    return result
+
+def sum_of_primes(n: int) -> list:
+    primes = find_prime(n)
+    result = []
+    for i in range(len(primes) // 2):
+        if n - primes[i] in primes:
+            result.append((primes[i], n-primes[i]))
+            break
+    return result
+
+def find_max_diff(array: list) -> tuple:
+    return array[0]
+
+while True:
+    n = int(input())
+    
+    # 입력의 마지막 줄
+    if n == 0:
+        break
+        
+    primes = sum_of_primes(n)
+    # print(primes)
+    if primes:
+        a, b = find_max_diff(primes)
+        print(f"{n} = {a} + {b}")
+    else:
+        # 소수의 합으로 나타낼 수 없는 경우
+        print("Goldbach's conjecture is wrong.")
+
+# 투 포인터로 풀어야 통과..
+import sys
+
+def Goldbach():
+    check = [False, False] + [True] * 1000000
+    
+    for i in range(2, 1001):
+        if check[i] == True:
+            for j in range(i + i, 1000001, i):
+                check[j] = False
+
+    while True:
+        n = int(sys.stdin.readline())
+
+        if n == 0:
+            break
+
+        A = 0
+        B = n
+        for _ in range(1000000):
+            if check[A] and check[B]:
+                print(f"{n} = {A} + {B}")
+                break
+            A += 1
+            B -= 1
+        else:
+            print("Goldbach's conjecture is wrong.")
+
+Goldbach()
