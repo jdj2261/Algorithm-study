@@ -8,14 +8,21 @@
 
 ### 문제 풀이
 
-- 백준
-- 프로그래머스
-- 이코테
-- 릿코드
+- [백준](https://www.acmicpc.net/)
 
 [![BaekJoon](images/BaekJoon.png)](https://www.acmicpc.net/)
+
+- [프로그래머스](https://programmers.co.kr/)
+
 [![Programmers](images/Programmers.png)](https://programmers.co.kr/)
 
-![DongBinNa](images/DongBinNa.png)
+- [이코테(Youtube)](https://www.youtube.com/watch?v=m-9pAwq1o3w&list=PLRx0vPvlEmdAghTr5mXQxGpHjWqSz0dgC)
 
-![LeetCode](images/LeetCode.png)
+[![DongBinNa](images/DongBinNa.png)](https://github.com/ndb796/python-for-coding-test)
+
+- [릿코드(from 파이썬 알고리즘 인터뷰)](https://leetcode.com/)
+
+[![LeetCode](images/LeetCode.png)](https://leetcode.com/)
+
+[![Sangil](images/Sangil.png)](https://github.com/onlybooks/algorithm-interview)
+
