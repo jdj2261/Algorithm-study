@@ -22,9 +22,10 @@ Output: [[1]]
 """
 
 from typing import List
+import itertools
 
 class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
+    def combine1(self, n: int, k: int) -> List[List[int]]:
         results = []
 
         def dfs(elements, start: int, k: int):
@@ -39,10 +40,12 @@ class Solution:
         dfs([], 1, k)
         return results
 
+    def combine2(self, n: int, k: int) -> List[List[int]]:
+        return list(itertools.combinations(range(1,n+1), k))
 
 if __name__ == "__main__":
     sol = Solution()
     n = 4
     k = 2
-    result = sol.combine(n, k)
+    result = sol.combine2(n, k)
     print(result)
