@@ -17,7 +17,7 @@ Input: nums = [1]
 Output: [[1]]
 """
 
-from itertools import permutations
+from itertools import dropwhile, permutations
 from typing import List
 from copy import deepcopy
 
@@ -30,21 +30,26 @@ class Solution:
         prev_elements = []
 
         def dfs(elements):
+            print("elements: {}".format(elements))
             if len(elements) == 0:
                 results.append(deepcopy(prev_elements))
+                print(results)
+                return
             
             for e in elements:
                 next_elements = deepcopy(elements)
                 next_elements.remove(e)
-
                 prev_elements.append(e)
+                print(f"dfs 이전 pre : {prev_elements}, next : {next_elements}, elements : {elements}, e:{e}")
                 dfs(next_elements)
                 prev_elements.pop()
+                print("back")
+                print(f"dfs 이후 pre : {prev_elements}, next : {next_elements}, elements : {elements}, e: {e}")
         dfs(nums)
         return results
 
 if __name__ == "__main__":
     sol = Solution()
-    digits = [1, 2, 3]
+    digits = [0, 1]
     result = sol.permute2(digits)
     print(result)
